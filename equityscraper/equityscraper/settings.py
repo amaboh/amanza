@@ -12,6 +12,9 @@ BOT_NAME = "equityscraper"
 SPIDER_MODULES = ["equityscraper.spiders"]
 NEWSPIDER_MODULE = "equityscraper.spiders"
 
+FEEDS = {
+    'booksdata.json': {'format': 'json'}
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "equityscraper (+http://www.yourdomain.com)"
@@ -64,6 +67,7 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     "equityscraper.pipelines.EquityscraperPipeline": 300,
+    "equityscraper.pipelines.SaveToMySQLPipeline": 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
