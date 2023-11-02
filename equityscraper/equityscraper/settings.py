@@ -16,6 +16,16 @@ FEEDS = {
     'booksdata.json': {'format': 'json'}
 }
 
+## settings.py
+
+SCRAPEOPS_API_KEY = ''
+
+SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
+SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
+SCRAPEOPS_NUM_RESULTS = 50
+
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "equityscraper (+http://www.yourdomain.com)"
 
@@ -53,9 +63,10 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
+DOWNLOADER_MIDDLEWARES = {
 #    "equityscraper.middlewares.EquityscraperDownloaderMiddleware": 543,
-# }
+   "equityscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -67,7 +78,7 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     "equityscraper.pipelines.EquityscraperPipeline": 300,
-    "equityscraper.pipelines.SaveToMySQLPipeline": 400,
+    # "equityscraper.pipelines.SaveToMySQLPipeline": 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
