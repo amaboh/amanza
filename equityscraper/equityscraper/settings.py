@@ -25,7 +25,11 @@ SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
 
 
-
+ROTATING_PROXY_LIST = [
+    '178.128.21.246: 56108',
+    '109.73.176.20: 4145',
+    '119.8.111.196: 1080',
+]
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "equityscraper (+http://www.yourdomain.com)"
 
@@ -66,6 +70,8 @@ ROBOTSTXT_OBEY = False
 DOWNLOADER_MIDDLEWARES = {
 #    "equityscraper.middlewares.EquityscraperDownloaderMiddleware": 543,
    "equityscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
 
 # Enable or disable extensions
